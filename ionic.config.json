@@ -1,0 +1,7 @@
+{
+  "name": "pinger-football",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
