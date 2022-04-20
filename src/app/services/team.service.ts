@@ -5,6 +5,7 @@ import { ApiResponse } from '../models/api-response';
 import { TeamItem } from '../models/team';
 
 export interface TeamQuery {
+    id: number;
     season: number;
     league: number;
 }
