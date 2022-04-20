@@ -62,4 +62,8 @@ export class LeaguesComponent implements OnInit {
         }
     }
 
+    onSelectionChange(event: CustomEvent) {
+        this.loadLeaguesBySeason(event.detail.value);
     }
+
+}

@@ -1,26 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Pinger Football
-    </ion-title>
+    <ion-title>Pinger Football</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-progress-bar *ngIf="loadingPage" type="indeterminate"></ion-progress-bar>
+  <ion-toolbar *ngIf="seasons && selectedSeason" [class.or-phone-only]="selectedSeason">
+    <div slot="start" class="app-flex ion-align-items-center ion-padding-start">
+      <ion-label slot="end">Season</ion-label>
+      <ion-select *ngIf="seasons" interface="popover" class="ion-padding-end"
+                  [class.or-phone-only]="selectedSeason"
+                  [value]="selectedSeason"
+                  (ionChange)="onSelectionChange($event)">
+        <ion-select-option *ngFor="let season of seasons" [value]="season">{{season}}</ion-select-option>
+      </ion-select>
+    </div>
+  </ion-toolbar>
   <ng-container *ngIf="!loadingPage">
     <div id="container" class="app-flex">
-      <div class="ion-padding app-overflow-y-scroll">
-        <div class="ion-text-center ion-margin-bottom">Season</div>
-        <div *ngFor="let season of seasons">
-          <ion-button
-                  [attr.fill]="selectedSeason===season ? 'solid':'clear'"
-                  (click)="loadLeaguesBySeason(season)">
-            {{season}}
-          </ion-button>
+      <div class="ion-padding app-overflow-y-scroll" [class.or-tablet-only]="selectedSeason">
+        <div class="or-phone-only ion-margin-bottom">To view leagues, please select a season.</div>
+        <div class="or-tablet-only ion-text-center ion-margin-bottom">Season</div>
+        <div class="app-leagues__seasons">
+          <div *ngFor="let season of seasons">
+            <ion-button
+                    [attr.fill]="selectedSeason===season ? 'solid':'clear'"
+                    (click)="loadLeaguesBySeason(season)">
+              {{season}}
+            </ion-button>
+          </div>
         </div>
       </div>
-      <div class="app-overflow-y-scroll app-flex-1">
+      <div class="app-overflow-y-scroll app-flex-1" [class.or-tablet-only]="!selectedSeason">
         <ng-container *ngIf="selectedSeason; else seasonPlaceholder">
           <div *ngIf="loadingSeason" class="app-full-and-center">
             <ion-spinner></ion-spinner>
@@ -40,7 +52,7 @@
         </ng-container>
         <ng-template #seasonPlaceholder>
           <div class="app-full-and-center">
-            To view leagues, please select a season first.
+            To view leagues, please select a season.
           </div>
         </ng-template>
       </div>

@@ -1,5 +1,14 @@
+@import "../../../theme/ionic-breakpoint-variables";
+
 #container {
   max-height: 100%;
+}
+
+.app-leagues__seasons {
+  @media (max-width: $ion-sm-max) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .app-leagues__card {

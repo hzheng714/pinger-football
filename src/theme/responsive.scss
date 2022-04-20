@@ -1,0 +1,27 @@
+@import "./ionic-breakpoint-variables";
+
+// show for phone
+.or-phone-only {
+  @media (min-width: $ion-md-min) {
+    display: none !important;
+  }
+}
+
+// show for tablet or larger
+.or-tablet-only {
+  @media (max-width: $ion-sm-max) {
+    display: none !important;
+  }
+}
+
+.or-tablet-and-smaller {
+  @media (min-width: $ion-lg-min) {
+    display: none !important;
+  }
+}
+
+.or-tablet-and-larger {
+  @media (max-width: $ion-md-max) {
+    display: none !important;
+  }
+}
