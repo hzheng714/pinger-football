@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LeaguesComponent } from './components/leagues/leagues.component';
+import { TeamPlayersComponent } from './components/team-players/team-players.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { AppHttpInterceptor } from './services/app-http-interceptor';
 
@@ -15,6 +16,7 @@ import { AppHttpInterceptor } from './services/app-http-interceptor';
     declarations: [
         AppComponent,
         LeaguesComponent,
+        TeamPlayersComponent,
         TeamsComponent
     ],
     imports: [

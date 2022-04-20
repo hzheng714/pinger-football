@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-breadcrumbs>
+      <ion-breadcrumb routerLink="/">
+        <ion-icon slot="start" name="home"></ion-icon>
+      </ion-breadcrumb>
+      <ion-breadcrumb [routerLink]="['/leagues']" [queryParams]="{season:season}">
+        {{season}}
+      </ion-breadcrumb>
+      <ion-breadcrumb [class.ion-hide]="loadingPage" [routerLink]="['/teams']"
+                      [queryParams]="{season:season, league:league?.id}">
+        {{league?.name}}
+      </ion-breadcrumb>
+      <ion-breadcrumb [class.ion-hide]="loadingPage">
+        {{team?.name}}
+      </ion-breadcrumb>
+    </ion-breadcrumbs>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Players</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-progress-bar *ngIf="loadingPage" type="indeterminate"></ion-progress-bar>
+  <div *ngIf="!loadingPage" class="app-flex ion-wrap ion-padding">
+    <ng-container *ngIf="playerItems?.length > 0; else noPlayers"></ng-container>
+    <ion-card *ngFor="let playerItem of playerItems" class="app-team-players__player-card">
+      <ion-card-content>
+        <div class="app-flex-column ion-align-items-stretch ion-padding-vertical">
+          <div class="app-team-players__player-card-header">
+            <ion-avatar>
+              <img [src]="playerItem.player.photo">
+            </ion-avatar>
+            <h2 class="app-team-players__player-name">
+              <ion-text color="dark">{{playerItem.player.name}}</ion-text>
+            </h2>
+            <div><ion-text color="dark">{{playerItem.player.nationality}}</ion-text></div>
+          </div>
+          <div class="ion-padding-top">
+            <div><ion-note class="app-detail-label">Age</ion-note><ion-note color="dark">{{playerItem.player.age}}</ion-note></div>
+            <div><ion-note class="app-detail-label">Height</ion-note><ion-note color="dark">{{playerItem.player.height}}</ion-note></div>
+            <div><ion-note class="app-detail-label">Weight</ion-note><ion-note color="dark">{{playerItem.player.weight}}</ion-note></div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <ng-template #noPlayers>
+      <div class="app-full-and-center">No players in {{team?.name}} team.</div>
+    </ng-template>
+  </div>
+</ion-content>

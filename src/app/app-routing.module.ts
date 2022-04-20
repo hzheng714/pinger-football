@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LeaguesComponent } from './components/leagues/leagues.component';
+import { TeamPlayersComponent } from './components/team-players/team-players.component';
 import { TeamsComponent } from './components/teams/teams.component';
 
 const routes: Routes = [
@@ -14,6 +15,9 @@ const routes: Routes = [
     }, {
         path: 'teams',
         component: TeamsComponent
+    }, {
+        path: 'team-players',
+        component: TeamPlayersComponent
     }
 ];
 

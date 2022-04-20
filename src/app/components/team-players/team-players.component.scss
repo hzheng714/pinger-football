@@ -1,0 +1,19 @@
+.app-team-players__player-card {
+  width: 200px;
+}
+
+.app-team-players__player-card-header {
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-team-players__player-name {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.app-detail-label {
+  margin-right: 8px;
+}
