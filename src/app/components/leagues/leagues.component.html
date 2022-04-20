@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Pinger Football
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-progress-bar *ngIf="loadingPage" type="indeterminate"></ion-progress-bar>
+  <ng-container *ngIf="!loadingPage">
+    <div id="container" class="app-flex">
+      <div class="ion-padding app-overflow-y-scroll">
+        <div class="ion-text-center ion-margin-bottom">Season</div>
+        <div *ngFor="let season of seasons">
+          <ion-button
+                  [attr.fill]="selectedSeason===season ? 'solid':'clear'"
+                  (click)="loadLeaguesBySeason(season)">
+            {{season}}
+          </ion-button>
+        </div>
+      </div>
+      <div class="app-overflow-y-scroll app-flex-1">
+        <ng-container *ngIf="selectedSeason; else seasonPlaceholder">
+          <div *ngIf="loadingSeason" class="app-full-and-center">
+            <ion-spinner></ion-spinner>
+            <ion-label class="ion-margin-start">Loading season ...</ion-label>
+          </div>
+          <div *ngIf="!loadingSeason" class="ion-padding-start app-flex ion-wrap">
+            <div *ngFor="let league of leagues"
+                 class="app-leagues__card"
+                 [routerLink]="['/teams']"
+                 [queryParams]="{league: league.league.id, season: selectedSeason}">
+              <ion-avatar>
+                <img [src]="league.league.logo">
+              </ion-avatar>
+              <div class="ion-margin-top">{{league.league.name}}</div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #seasonPlaceholder>
+          <div class="app-full-and-center">
+            To view leagues, please select a season first.
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ng-container>
+
+</ion-content>

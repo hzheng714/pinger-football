@@ -7,16 +7,20 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { LeaguesComponent } from './components/leagues/leagues.component';
 import { AppHttpInterceptor } from './services/app-http-interceptor';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LeaguesComponent,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
-        IonicModule.forRoot(),
+        IonicModule.forRoot({
+            mode: 'md'
+        }),
         AppRoutingModule
     ],
     providers: [
