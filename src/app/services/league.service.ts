@@ -4,6 +4,12 @@ import { environment } from '../../environments/environment';
 import { ApiResponse } from '../models/api-response';
 import { LeagueItem } from '../models/league';
 
+export interface LeagueQuery {
+    id: number;
+    season: number;
+}
+
+
 @Injectable({providedIn: 'root'})
 export class LeagueService {
 
@@ -15,9 +21,9 @@ export class LeagueService {
         return this.http.get<ApiResponse<number>>(url);
     }
 
-    getLeaguesBySeason(season: number) {
+    getLeagues(params: Partial<LeagueQuery>) {
         const url = environment.apiPrefix + '/leagues';
-        return this.http.get<ApiResponse<LeagueItem>>(url, {params: {season}});
+        return this.http.get<ApiResponse<LeagueItem>>(url, {params});
     }
 
 }
