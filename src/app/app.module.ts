@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LeaguesComponent } from './components/leagues/leagues.component';
+import { TeamsComponent } from './components/teams/teams.component';
 import { AppHttpInterceptor } from './services/app-http-interceptor';
 
 @NgModule({
     declarations: [
         AppComponent,
         LeaguesComponent,
+        TeamsComponent
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-breadcrumbs>
+      <ion-breadcrumb routerLink="/">
+        <ion-icon slot="start" name="home"></ion-icon>
+      </ion-breadcrumb>
+      <ion-breadcrumb [routerLink]="['/leagues']" [queryParams]="{season:season}">
+        {{season}}
+      </ion-breadcrumb>
+      <ion-breadcrumb [class.ion-hide]="loadingPage">
+        {{league?.name}}
+      </ion-breadcrumb>
+    </ion-breadcrumbs>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-img slot="start" class="app-teams__league-icon" [src]="league?.logo"></ion-img>
+      <ion-title size="large">Teams</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-progress-bar *ngIf="loadingPage" type="indeterminate"></ion-progress-bar>
+  <div *ngIf="!loadingPage" class="app-flex ion-wrap ion-padding">
+    <ion-card *ngFor="let teamVenue of teamVenues"
+              class="app-teams__team-card"
+              [routerLink]="['/team-players']"
+              [queryParams]="{league: league.id, season: season, team: teamVenue.team.id}">
+      <ion-card-content>
+        <div class="app-flex-column ion-align-items-center ion-padding-top">
+          <ion-avatar>
+            <img [src]="teamVenue.team.logo">
+          </ion-avatar>
+          <div class="ion-margin-top app-flex-1 ion-text-center">
+            <h2><ion-text color="dark">{{teamVenue.team.name}}</ion-text></h2>
+            <div><ion-note>{{teamVenue.team.country}}</ion-note></div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
