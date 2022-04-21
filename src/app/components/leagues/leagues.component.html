@@ -24,7 +24,7 @@
         <div class="or-tablet-only ion-text-center ion-margin-bottom">Season</div>
         <div class="app-leagues__seasons">
           <div *ngFor="let season of seasons">
-            <ion-button
+            <ion-button class="app-leagues__season-button"
                     [attr.fill]="selectedSeason===season ? 'solid':'clear'"
                     (click)="loadLeaguesBySeason(season)">
               {{season}}
